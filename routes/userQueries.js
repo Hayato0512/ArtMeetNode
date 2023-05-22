@@ -51,16 +51,21 @@ router.get("/readusers/", async (req, res) => {
 router.get("/readuserbyemail/:email", async (req, res) => {
   console.log("read users byemail query called");
   console.log(`req.body.email is ${req.params.email}`);
-  connection.query(
-    `SELECT * FROM user WHERE email = '${req.params.email}'`,
-    (error, res2) => {
-      if (error) throw error;
-      else {
-        console.log(res2);
-        res.send(res2);
+  try {
+    connection.query(
+      `SELECT * FROM user WHERE email = '${req.params.email}'`,
+      (error, res2) => {
+        if (error) throw error;
+        else {
+          console.log(res2);
+          res.send(res2);
+        }
       }
-    }
-  );
+    );
+  } catch (error) {
+    console.log(error)
+  }
+
 });
 router.get("/readuserbyid/:id", async (req, res) => {
   console.log("read users byid query called");
