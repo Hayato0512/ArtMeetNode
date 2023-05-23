@@ -85,7 +85,7 @@ router.get("/readuserbyemail/:email", async (req, res) => {
   } catch (error) {
     console.log(error)
   }
-
+console.log("hey")
 });
 router.get("/readuserbyid/:id", async (req, res) => {
   console.log("read users byid query called");
