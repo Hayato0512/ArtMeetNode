@@ -76,7 +76,7 @@ router.get("/readuserbyemail/:email", async (req, res) => {
     connection.query(
       `SELECT * FROM user WHERE email = '${req.params.email}'`,
       (error, res2) => {
-        if (error) consolog.log("hey got some error but don't throw")
+        if (error) console.log("hey got some error but don't throw")
         else {
           console.log(res2);
           res.send(res2);
