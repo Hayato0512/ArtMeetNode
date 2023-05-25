@@ -5,7 +5,7 @@ const mysql = require("mysql");
 var connection
 
 function handleDisconnect() {
-  connection = mysql.createConnection({
+  connection = mysql.createPool({
     host: "us-cdbr-east-06.cleardb.net",
     user: "b463dda7a021ae",
     password: "af90497c",
