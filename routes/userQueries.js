@@ -70,6 +70,7 @@ router.get("/readusers/", async (req, res) => {
 
 router.get("/readuserbyemail/:email", async (req, res) => {
   console.log("read users byemail query called");
+  console.log("read users byemail query called");
   console.log(`req.body.email is ${req.params.email}`);
   try {
     connection.query(
