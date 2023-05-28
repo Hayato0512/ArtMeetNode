@@ -1,11 +1,37 @@
 const router = require("express").Router();
 const connection = require("../db");
-const jsonParser = require("../app");
+const jsonParser = require("../app"); 
 router.get("/post", (req, res) => {
   console.log("hey what up???");
   try {
     connection.query(
       "INSERT INTO post (artistId, title,price,setsumei,desc2) VALUES (2, 'testClass2',50,'this is setsumei','desc2')",
+      (error, res2) => {
+        if (error) throw error;
+  
+        if (!error) {
+          console.log("succeed");
+          res.send("succeed");
+        }
+      }
+    );
+  } catch (error) {
+    
+  }
+ 
+});
+
+router.post("/registeruser", (req, res) => {
+  var name = req.body.name
+  var email = req.body.email
+  var password = req.body.password
+  var isArtist = req.body.isArtist
+  
+  console.log(`hey what up??? register user is called \n, will throw name ${name}, email ${email}, password ${password}, isArtist ${isArtist}`);
+
+  try {
+    connection.query(
+      `INSERT INTO user (name, email, password, isArtist) VALUES ('${name}','${email}','${password}', ${isArtist})`,
       (error, res2) => {
         if (error) throw error;
   
@@ -165,10 +191,8 @@ router.post("/follows/:userid/:useridtofollow", async (req, res) => {
         }
       }
     );
-  } catch (error) {
-    
+  } catch (error) { 
   }
-
 });
 router.get("/readfollowings/:userid", async (req, res) => {
   console.log(`followings called`);
