@@ -66,7 +66,7 @@ router.delete("/deletebyid/:id", async (req, res) => {
   const result = req.params.id;
   console.log(`req is like this ${result}`);
   try {
-    connection.query(`DELETE FROM user WHERE id = ${result}`, (error) => {
+    connection.query(`DELETE FROM user WHERE userid = ${result}`, (error) => {
       if (error) throw error;
       else {
         res.send("hey");
@@ -119,7 +119,7 @@ router.get("/readuserbyid/:id", async (req, res) => {
   console.log("read users byid query called");
   try {
     connection.query(
-      `SELECT * FROM user WHERE id = ${req.params.id}`,
+      `SELECT * FROM user WHERE userid = ${req.params.id}`,
       (error, res2) => {
         if (error) throw error;
         else {
@@ -136,10 +136,10 @@ router.get("/readuserbyid/:id", async (req, res) => {
 
 router.put("/update", async (req, res) => {
   console.log("update query called");
-  console.log(`the passed req.body is ${req.body.id}`);
+  console.log(`the passed req.body is ${req.body.userid}`);
   try {
     connection.query(
-      `UPDATE user SET name = 'Takuya1', email='takuya1@gmail.com' WHERE id = 104`,
+      `UPDATE user SET name = 'Takuya1', email='takuya1@gmail.com' WHERE userid = 104`,
       (error) => {
         if (error) throw error;
         else {
