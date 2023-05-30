@@ -194,11 +194,16 @@ router.post("/follows/:userid/:useridtofollow", async (req, res) => {
   } catch (error) { 
   }
 });
+/**
+ * let's modify this function so that this not only returns the id, but this also returns the user info.
+ */
 router.get("/readfollowings/:userid", async (req, res) => {
   console.log(`followings called`);
   try {
     connection.query(
-      `SELECT followeduserid FROM follows WHERE userId = ${req.params.userid}`,
+      // `SELECT followeduserid FRfollows WHERE userId = ${req.params.userid}`,
+      `SELECT * FROM user WHERE userid IN (SELECT followeduserid from follows WHERE userId = ${req.params.userid})`,
+      // `SELECT user.userid, user.name, user.email, user.isArtist FROM user INNER JOIN follows ON  user.userid = follows.followeduserid`,
       (error, res2) => {
         try {
           if (error) throw error;
