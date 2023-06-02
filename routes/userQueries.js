@@ -202,6 +202,31 @@ router.get("/readbookmarkedpostsbyid/:id", async (req, res) => {
  
 });
 
+router.get("/fetchotherspostsbyid/:id", async (req, res) => {
+  console.log(`hey the parameter is ${req.params.id}`);
+  try {
+    connection.query(
+      `SELECT post.postId, user.name, post.title, post.price, post.setsumei, post.desc2 
+      FROM post 
+      JOIN follows on post.artistid = follows.followeduserid 
+      JOIN user on user.userid = post.artistid 
+      where follows.userId = ${req.params.id}`,
+      (error, res2) => {
+        try {
+          if (error) throw error;
+          else {
+            res.send(res2);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    );
+  } catch (error) {
+    
+  }
+ 
+});
 router.post("/follows/:userid/:useridtofollow", async (req, res) => {
   console.log(`follows called`);
   try {
