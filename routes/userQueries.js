@@ -272,6 +272,29 @@ router.get("/readfollowings/:userid", async (req, res) => {
   }
 
 });
+
+router.get("/searchuserontextchange/:text", async (req, res) => {
+  console.log(`hey the parameter is ${req.params.text}`);
+  try {
+    connection.query(
+      `SELECT * FROM user
+      WHERE name LIKE '${req.params.text}%'`,
+      (error, res2) => {
+        try {
+          if (error) throw error;
+          else {
+            res.send(res2);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    );
+  } catch (error) {
+    
+  }
+ 
+});
 // console.log(res);
 // connection.query("DELETE FROM user LIMIT 1", (error) => {
 //   if (error) throw error;
