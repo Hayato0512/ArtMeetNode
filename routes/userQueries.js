@@ -331,6 +331,7 @@ router.get("/checkfollowingstatus/:currentuserid/:userid", async (req, res) => {
           if (error) throw error;
           else {
             console.log(res2)
+            console.log(res)
             // res.send(res2);
           }
         } catch (error) {
