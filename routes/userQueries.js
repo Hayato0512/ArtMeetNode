@@ -319,6 +319,30 @@ router.post("/followuser/:currentuserid/:userid", async (req, res) => {
  
 });
 
+
+router.delete("/unfollowuser/:currentuserid/:userid", async (req, res) => {
+  console.log(`hey the parameter is ${req.params.currentuserid}`);
+  console.log(`hey the parameter is ${req.params.userid}`);
+  try {
+    connection.query(
+      `DELETE FROM follows WHERE userId = ${req.params.currentuserid} AND followeduserid = ${req.params.userid};`,
+      (error, res2) => {
+        try {
+          if (error) throw error;
+          else {
+            res.send(res2);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    );
+  } catch (error) {
+    
+  }
+ 
+});
+
 router.get("/checkfollowingstatus/:currentuserid/:userid", async (req, res) => {
   console.log(`hey the parameter is ${req.params.currentuserid}`);
   console.log(`hey the parameter is ${req.params.userid}`);
