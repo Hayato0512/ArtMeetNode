@@ -326,7 +326,7 @@ router.get("/checkfollowingstatus/:currentuserid/:userid", async (req, res) => {
     connection.query(
       ` SELECT CASE WHEN EXISTS (SELECT id FROM follows WHERE userId = ${req.params.currentuserid} AND followeduserid = ${req.params.userid})
       THEN 'TRUE'
-      ELSE 'FALSE'`,
+      ELSE 'FALSE' END`,
       (error, res2) => {
         try {
         // SELECT id FROM follows WHERE userId = ${req.params.currentuserid} AND followeduserid = ${req.params.userid}
