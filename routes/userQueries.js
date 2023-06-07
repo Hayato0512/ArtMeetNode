@@ -318,6 +318,30 @@ router.post("/followuser/:currentuserid/:userid", async (req, res) => {
   }
  
 });
+
+router.get("/checkfollowingstatus/:currentuserid/:userid", async (req, res) => {
+  console.log(`hey the parameter is ${req.params.currentuserid}`);
+  console.log(`hey the parameter is ${req.params.userid}`);
+  try {
+    connection.query(
+      `SELECT * FROM follows WHERE userId = ${req.params.currentuserid} AND followeduserid = ${req.params.userid}`,
+      (error, res2) => {
+        try {
+          if (error) throw error;
+          else {
+            console.log(res2)
+            // res.send(res2);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    );
+  } catch (error) {
+    
+  }
+ 
+});
 // console.log(res);
 // connection.query("DELETE FROM user LIMIT 1", (error) => {
 //   if (error) throw error;
