@@ -330,9 +330,8 @@ router.get("/checkfollowingstatus/:currentuserid/:userid", async (req, res) => {
         // SELECT id FROM follows WHERE userId = ${req.params.currentuserid} AND followeduserid = ${req.params.userid}
           if (error) throw error;
           else {
-            console.log(res2)
-            console.log(res)
-            // res.send(res2);
+            // console.log(res2)
+            res.send(res2);
           }
         } catch (error) {
           console.log(error);
@@ -340,9 +339,7 @@ router.get("/checkfollowingstatus/:currentuserid/:userid", async (req, res) => {
       }
     );
   } catch (error) {
-    
   }
- 
 });
 // console.log(res);
 // connection.query("DELETE FROM user LIMIT 1", (error) => {
