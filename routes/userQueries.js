@@ -251,6 +251,31 @@ router.get("/fetchspecificpostsbyid/:id", async (req, res) => {
   }
  
 });
+
+router.get("/fetchspecificsessionsbyid/:id", async (req, res) => {
+  console.log(`hey the parameter is ${req.params.id}`);
+  try {
+    connection.query(
+      `SELECT session.artistId, session.studentId, user.name as artistName,session.dateAndTime, session.isBooked, session.isRequested, session.isFinished,
+      session.comment
+      FROM session JOIN user on session.artistId = user.userid 
+      where session.artistId = ${req.params.id}`,
+      (error, res2) => {
+        try {
+          if (error) throw error;
+          else {
+            res.send(res2);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    );
+  } catch (error) {
+    
+  }
+ 
+});
 router.post("/follows/:userid/:useridtofollow", async (req, res) => {
   console.log(`follows called`);
   try {
