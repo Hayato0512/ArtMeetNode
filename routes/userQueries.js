@@ -325,6 +325,30 @@ router.put("/requestsession/:studentid/:sessionid/:isRequested", async (req, res
   }
  
 });
+router.put("/cancelsession/:studentid/:sessionid/:isRequested", async (req, res) => {
+  console.log(`hey the parameter is ${req.params.id}`);
+  try {
+    connection.query(
+      `UPDATE session
+      SET isRequested = ${req.params.isRequested}, studentId = null
+      WHERE id = ${req.params.sessionid}; `,
+      (error, res2) => {
+        try {
+          if (error) throw error;
+          else {
+            res.send(res2);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    );
+  } catch (error) {
+    
+  }
+ 
+});
+
 router.post("/follows/:userid/:useridtofollow", async (req, res) => {
   console.log(`follows called`);
   try {
