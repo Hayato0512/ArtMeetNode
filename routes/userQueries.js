@@ -349,7 +349,7 @@ router.put("/cancelsession/:studentid/:sessionid/:isRequested", async (req, res)
  
 });
 
-router.get("/fetchsessionbystudentid/:studentid", async (req, res) => {
+router.get("/fetchsessionsbystudentid/:studentid", async (req, res) => {
   console.log(`hey the parameter is ${req.params.id}`);
   try {
     connection.query(
@@ -374,7 +374,7 @@ WHERE studentId = ${req.params.sessionid}; `,
  
 });
 
-router.get("/fetchsessionbyartistid/:artistid", async (req, res) => {
+router.get("/fetchsessionsbyartistid/:artistid", async (req, res) => {
   console.log(`hey the parameter is ${req.params.id}`);
   try {
     connection.query(
