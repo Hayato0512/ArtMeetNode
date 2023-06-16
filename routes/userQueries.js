@@ -349,6 +349,30 @@ router.put("/cancelsession/:sessionid", async (req, res) => {
  
 });
 
+router.put("/approvesession/:sessionid", async (req, res) => {
+  console.log(`hey the parameter is ${req.params.id}`);
+  try {
+    connection.query(
+      `UPDATE session
+      SET  isBooked = 1 
+      WHERE id = ${req.params.sessionid}; `,
+      (error, res2) => {
+        try {
+          if (error) throw error;
+          else {
+            res.send(res2);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    );
+  } catch (error) {
+    
+  }
+ 
+});
+
 router.get("/fetchsessionsbystudentid/:studentid", async (req, res) => {
   console.log(`hey the parameter is ${req.params.id}`);
   try {
