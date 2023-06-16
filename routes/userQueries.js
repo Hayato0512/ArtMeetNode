@@ -405,7 +405,7 @@ router.get("/fetchsessionsbyartistid/:artistid", async (req, res) => {
       `SELECT session.id as sessionId, session.artistId, session.studentId, user.name as artistName,session.dateAndTime, session.isBooked, session.isRequested, session.isFinished,
       session.comment FROM session
 JOIN user on session.artistId = user.userid
-WHERE artistid = ${req.params.artistid} AND studentId != null; `,
+WHERE artistid = ${req.params.artistid} AND studentId != 0; `,
       (error, res2) => {
         try {
           if (error) throw error;
