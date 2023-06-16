@@ -325,12 +325,12 @@ router.put("/requestsession/:studentid/:sessionid/:isRequested", async (req, res
   }
  
 });
-router.put("/cancelsession/:studentid/:sessionid/:isRequested", async (req, res) => {
+router.put("/cancelsession/:sessionid", async (req, res) => {
   console.log(`hey the parameter is ${req.params.id}`);
   try {
     connection.query(
       `UPDATE session
-      SET isRequested = ${req.params.isRequested}, studentId = null
+      SET isRequested = 0, isBooked = 0, studentId = null
       WHERE id = ${req.params.sessionid}; `,
       (error, res2) => {
         try {
