@@ -32,7 +32,7 @@ router.post("/registeruser", (req, res) => {
 
   try {
     connection.query(
-      `INSERT INTO user (name, email, password, isArtist, uid) VALUES ('${name}','${email}','${password}', ${isArtist}, ${uid})`,
+      `INSERT INTO user (name, email, password, isArtist, uid) VALUES ('${name}','${email}','${password}', ${isArtist}, '${uid}')`,
       (error, res2) => {
         if (error) throw error;
   
