@@ -26,12 +26,13 @@ router.post("/registeruser", (req, res) => {
   var email = req.body.email
   var password = req.body.password
   var isArtist = req.body.isArtist
+  var uid = req.body.uid
   
   console.log(`hey what up??? register user is called \n, will throw name ${name}, email ${email}, password ${password}, isArtist ${isArtist}`);
 
   try {
     connection.query(
-      `INSERT INTO user (name, email, password, isArtist) VALUES ('${name}','${email}','${password}', ${isArtist})`,
+      `INSERT INTO user (name, email, password, isArtist,uid) VALUES ('${name}','${email}','${password}', ${isArtist}, ${uid})`,
       (error, res2) => {
         if (error) throw error;
   
