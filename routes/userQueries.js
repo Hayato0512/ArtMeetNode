@@ -257,7 +257,7 @@ router.get("/fetchspecificsessionsbyid/:id", async (req, res) => {
   console.log(`hey the parameter is ${req.params.id}`);
   try {
     connection.query(
-      `SELECT session.id as sessionId, session.artistId, session.studentId, user.name as artistName,session.dateAndTime, session.isBooked, session.isRequested, session.isFinished,
+      `SELECT session.id as sessionId, session.artistId, session.artistUid, session.studentId, session.studentUid, user.name as artistName,session.dateAndTime, session.isBooked, session.isRequested, session.isFinished,
       session.comment
       FROM session JOIN user on session.artistId = user.userid 
       where session.artistId = ${req.params.id}`,
@@ -282,7 +282,7 @@ router.get("/fetchsessionbyid/:id", async (req, res) => {
   console.log(`hey the parameter is ${req.params.id}`);
   try {
     connection.query(
-      `SELECT session.id as sessionId, session.artistId, session.studentId, user.name as artistName,session.dateAndTime, session.isBooked, session.isRequested, session.isFinished,
+      `SELECT session.id as sessionId, session.artistId, session.artistUid, session.studentId, session.studentUid, user.name as artistName,session.dateAndTime, session.isBooked, session.isRequested, session.isFinished,
       session.comment
       FROM session JOIN user on session.artistId = user.userid 
       where session.id = ${req.params.id}`,
@@ -378,7 +378,7 @@ router.get("/fetchsessionsbystudentid/:studentid", async (req, res) => {
   console.log(`hey the parameter is ${req.params.id}`);
   try {
     connection.query(
-      `SELECT session.id as sessionId, session.artistId, session.studentId, user.name as artistName,session.dateAndTime, session.isBooked, session.isRequested, session.isFinished,
+      `SELECT session.id as sessionId, session.artistId, session.artistUid, session.studentId, session.studentUid, user.name as artistName,session.dateAndTime, session.isBooked, session.isRequested, session.isFinished,
       session.comment FROM session
 JOIN user on session.artistId = user.userid
 WHERE studentId = ${req.params.studentid} AND isRequested = true; `,
@@ -403,7 +403,7 @@ router.get("/fetchsessionsbyartistid/:artistid", async (req, res) => {
   console.log(`hey the parameter is ${req.params.id}`);
   try {
     connection.query(
-      `SELECT session.id as sessionId, session.artistId, session.studentId, user.name as artistName,session.dateAndTime, session.isBooked, session.isRequested, session.isFinished,
+      `SELECT session.id as sessionId, session.artistId, session.artistUid, session.studentId, session.studentUid, user.name as artistName,session.dateAndTime, session.isBooked, session.isRequested, session.isFinished,
       session.comment FROM session
 JOIN user on session.artistId = user.userid
 WHERE artistid = ${req.params.artistid} AND studentId != 0; `,
