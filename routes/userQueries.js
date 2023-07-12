@@ -350,6 +350,29 @@ router.put("/cancelsession/:sessionid", async (req, res) => {
  
 });
 
+router.put("/uploadimage/:userid/:imageuri", async (req, res) => {
+  try {
+    connection.query(
+      `UPDATE user
+      SET imageUri = ${req.params.imageUri}
+      WHERE userid = ${req.params.userid}; `,
+      (error, res2) => {
+        try {
+          if (error) throw error;
+          else {
+            res.send(res2);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    );
+  } catch (error) {
+    
+  }
+ 
+});
+
 router.put("/approvesession/:sessionid", async (req, res) => {
   console.log(`hey the parameter is ${req.params.id}`);
   try {
