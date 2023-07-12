@@ -354,7 +354,7 @@ router.put("/uploadimage/:userid/:imageuri", async (req, res) => {
   try {
     connection.query(
       `UPDATE user
-      SET imageUri = ${req.params.imageUri}
+      SET imageUri = ${req.params.imageuri}
       WHERE userid = ${req.params.userid}; `,
       (error, res2) => {
         try {
