@@ -48,6 +48,30 @@ router.post("/registeruser", (req, res) => {
  
 });
 
+router.post("/insertpost", (req, res) => {
+  var artistId = reqbody.artistId
+  var title = req.body.title
+  var desc = req.body.desc
+  var imageUrl = req.body.imageUrl
+  
+  try {
+    connection.query(
+      `INSERT INTO post (artistId, title, desc2, imageUrl) VALUES (${artistId},'${title}','${desc}', '${imageUrl}')`,
+      (error, res2) => {
+        if (error) throw error;
+  
+        if (!error) {
+          console.log("succeed");
+          res.send("succeed");
+        }
+      }
+    );
+  } catch (error) {
+    
+  }
+ 
+});
+
 router.delete("/deletefirst", async (req, res) => {
   console.log("delete query called");
   try {
