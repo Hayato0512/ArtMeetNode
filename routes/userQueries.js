@@ -53,6 +53,7 @@ router.post("/insertpost", (req, res) => {
   var title = req.body.title
   var desc = req.body.desc
   var imageUrl = req.body.imageUrl
+  //hey
   
   try {
     connection.query(
