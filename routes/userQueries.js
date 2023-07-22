@@ -49,7 +49,7 @@ router.post("/registeruser", (req, res) => {
 });
 
 router.post("/insertpost", (req, res) => {
-  var artistId = reqbody.artistId
+  var artistId = req.body.artistId
   var title = req.body.title
   var desc = req.body.desc
   var imageUrl = req.body.imageUrl
