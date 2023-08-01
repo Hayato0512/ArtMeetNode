@@ -73,6 +73,35 @@ router.post("/insertpost", (req, res) => {
  
 });
 
+router.post("/insertevent", (req, res) => {
+  var hostId = req.body.hostId
+  var title = req.body.title
+  var desc = req.body.desc
+  var imageUrl = req.body.imageUrl
+  var date = req.body.date
+  var duration = req.body.duration
+  var numOfSpots = req.body.numOfSpots
+  var location  = req.body.location 
+  var eventType  = req.body.eventType 
+  
+  try {
+    connection.query(
+      `INSERT INTO event (hostId, title, desc2, imageUrl, Date, Duration, numOfSpots, location, eventType) VALUES (${hostId},'${title}','${desc}', '${imageUrl}', '${date}', ${duration}, ${numOfSpots}, '${location}', ${eventType})`,
+      (error, res2) => {
+        if (error) throw error;
+  
+        if (!error) {
+          console.log("succeed");
+          res.send("succeed");
+        }
+      }
+    );
+  } catch (error) {
+    
+  }
+ 
+});
+
 router.delete("/deletefirst", async (req, res) => {
   console.log("delete query called");
   try {
